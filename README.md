@@ -61,16 +61,14 @@ Project Organization
 
 ``` shell
 ssh-keygen -t ed25519 -C "sashi@iisc.ac.in"
-
+```
 ## Clone the repository
 - Create a virtual environment using `venv` (you can also use `conda` instead of this)
 ``` shell
 git clone https://github.com/StarsCDS/AIMLOps.git
 ```
 
-
 ## Install dependencies
-
 - Create a virtual environment using `venv` (you can also use `conda` instead of this)
 ``` shell
 make setup
@@ -84,7 +82,7 @@ make requirements
 ```
 
 ## Data Versioning with `dvc`
-- Create the a directory data/raw (if it is not their or ceating the ML System for the first time)
+- Create a directory `data/raw` (if it is not their or ceating the ML System for the first time)
 ``` shell
 mkdir  data/raw
 ```
@@ -101,12 +99,25 @@ dvc add data/raw
 ``` shell
 dvc config core.autostage true
 ```
-        
+- Adding Gdrive as remote for storing and versioning the data
+- Create a Folder over the Drive
+- https://dvc.org/doc/user-guide/data-management/remote-storage/google-drive#authorization
 - Pull the raw data from Google Drive (run `pip install dvc dvc-gdrive` if dvc command is not found)
 
-
-
-
 ``` shell
-dvc pull
+dvc remote add --default myremote gdrive://(ID is after https://drive.google.com/drive/folders/
+dvc remote modify myremote gdrive_acknowledge_abuse true
+```
+
+## OR
+
+- Adding AWS S3 as remote for storing and versioning the data
+- Create s3 bucket in AWS. 
+- It is advised to create a user with access to S3 (AmazonS3FullAccess or custum access to S3)
+- Under the user, open `security and credentials` and create `Access keys` with CLI option copy ID and Key
+``` shell
+pip3 install awscli 
+aws configure
+dvc remote add --default myawss3 s3://(name of the bucket)
+dvc push
 ```

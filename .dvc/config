@@ -1,2 +1,8 @@
 [core]
     autostage = true
+    remote = myawss3
+['remote "myremote"']
+    url = gdrive://1Ib2ffQyE_giWwBFzHL1kC6RWQZlmSKhB
+    gdrive_acknowledge_abuse = true
+['remote "myawss3"']
+    url = s3://aimlopsdemo
