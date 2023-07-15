@@ -51,13 +51,18 @@ else
 	aws s3 sync data/ s3://$(BUCKET)/data/ --profile $(PROFILE)
 endif
 
-## Download Data from S3
+## Download Data from S3 without using DVC
 sync_data_from_s3:
 ifeq (default,$(PROFILE))
 	aws s3 sync s3://$(BUCKET)/data/ data/
 else
 	aws s3 sync s3://$(BUCKET)/data/ data/ --profile $(PROFILE)
 endif
+
+
+## Run tests
+test:
+	$(PYTHON_INTERPRETER) -m pytest -vv -cov=add_demo tests/test_demo.py
 
 ## Set up python interpreter environment
 create_environment:

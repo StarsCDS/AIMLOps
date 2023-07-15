@@ -116,8 +116,16 @@ dvc remote modify myremote gdrive_acknowledge_abuse true
 - It is advised to create a user with access to S3 (AmazonS3FullAccess or custum access to S3)
 - Under the user, open `security and credentials` and create `Access keys` with CLI option copy ID and Key
 ``` shell
+pip install dvc-s3
 pip3 install awscli 
 aws configure
 dvc remote add --default myawss3 s3://(name of the bucket)
 dvc push
+```
+## Github Action
+
+## FastAPI
+- Create API files inside the folder `api`
+``` shell
+uvicorn api.main:app
 ```
