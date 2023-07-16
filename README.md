@@ -114,7 +114,19 @@ dvc remote modify myremote gdrive_acknowledge_abuse true
 - Adding AWS S3 as remote for storing and versioning the data
 - Create s3 bucket in AWS. 
 - It is advised to create a user with access to S3 (AmazonS3FullAccess or custum access to S3)
-- Under the user, open `security and credentials` and create `Access keys` with CLI option copy ID and Key
+- Under the user, open `security and credentials` and create `Access keys` with CLI option copy ID and Key. You can add (optional) for future reference and for directly connecting S3 from your system.
+``` shell
+cd ~/
+vi .credentials
+```
+``` 
+add 
+[default]
+aws_access_key_id =  
+aws_secret_access_key =  
+```
+- Now confiigure aws with dvc
+
 ``` shell
 pip install dvc-s3
 pip3 install awscli 
@@ -122,10 +134,27 @@ aws configure
 dvc remote add --default myawss3 s3://(name of the bucket)
 dvc push
 ```
-## Github Action
 
-## FastAPI
-- Create API files inside the folder `api`
+## Deploynment of containers to AWS
+## Containerise FastAPI and test it with uvicorn webserver implementation
+- Create API files, `__init__.py` and `main.py`, inside the folder `api`
+
+- Add `Dockerfile` and configure 
+``` shell
+touch Dockerfile
+``` 
+
+- Use <a target="_blank" href="https://www.uvicorn.org"> uvicorn</a>, an ASGI web server implementation for Python.
+- To start the server and check the API, use
 ``` shell
 uvicorn api.main:app
 ```
+# AWS ECR
+- Create AWS ECR: `Create repositry`
+- Allow access to IAM user: Permission-> ADD Permisions->Create inline permisions-> add ECR
+
+## AWS setting for Github Action
+- Under the repository, go to settings->security->Secrets and Variables->Actions-> Add `New Repository Key`
+- `AWS_ACCESS_KEY_ID` `AWS_ACCOUNT_ID` `AWS_SECRET_ACCESS_KEY` `REPO_NAME`
+- Under Actions add `New Workflow` -> set up a workflow yourself->`deploy.yml`
+- Make sure to configure `aws-region:` (ECR region, e.g., ap-south-1) correctly
