@@ -25,4 +25,4 @@ async def getTime():
 
 @app.get('/')
 async def ping():
-    return { 'msg': 'MLOps Flask API is running' }
+    return { 'msg': 'AIMLOps Flask API is running' }
