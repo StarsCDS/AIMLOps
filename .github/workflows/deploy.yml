@@ -38,7 +38,7 @@ env:
   ECS_SERVICE: AIMLOps-DemoECSService
   ECS_CLUSTER: AIMLOps-DemoECS
   ECS_TASK_DEFINITION: .aws/task-definition.json
-  CONTAINER_NAME: mlops
+  CONTAINER_NAME: AIMLOpsDemo
 
 permissions:
   contents: read
