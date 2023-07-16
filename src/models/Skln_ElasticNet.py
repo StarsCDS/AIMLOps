@@ -75,4 +75,4 @@ if __name__ == "__main__":
         # tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
         # Model registry 
-        mlflow.sklearn.log_model(lr, "model")
+        mlflow.sklearn.log_model(lr, "model", registered_model_name="ElasticnetWineModel")
