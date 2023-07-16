@@ -22,8 +22,8 @@ endif
 ## Activate Python Environment
 setup:
 	python3 -m venv ~/.AIMLOps
-	# source ~/.AIMLOps/bin/activate
-	# python3 -m pip install --upgrade pip
+	source ~/.AIMLOps/bin/activate
+	pip install --upgrade pip
 	
 ## Install Python Dependencies
 requirements: test_environment

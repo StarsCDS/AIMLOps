@@ -128,11 +128,19 @@ aws_secret_access_key =
 - Now confiigure aws with dvc
 
 ``` shell
-pip install dvc-s3
+pip3 install dvc-s3
 pip3 install awscli 
 aws configure
 dvc remote add --default myawss3 s3://(name of the bucket)
 dvc push
+```
+## MLFlow using DagsHub
+``` shell
+touch src/models/Skln_Elasticnet.py
+export MLFLOW_TRACKING_USERNAME= 
+export MLFLOW_TRACKING_PASSWORD=
+python3 Skln_ElasticNet.py
+python3 Skln_ElasticNet.py 0.4 0.6
 ```
 
 ## Deploynment of containers to AWS
